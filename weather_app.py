@@ -13,22 +13,26 @@ cities = pd.read_csv('world_cities.csv')
 
 #-----------------------------------------------------------------------
 
+# Select box
+st.subheader('Temperature History App')
 
-# SIDEBAR
-# Let's add some functionalities in a sidebar
+col1, col2 = st.columns(2, gap='medium')
+# column 1 - Table weather history
+with col1:
+    # Title of the select box
+    selected_city = st.selectbox(label='Select a city for weather information',
+                                 options=cities['city'].sort_values().unique())
 
-st.sidebar.subheader('Select a city for weather information')
-
-# Title of the select box
-selected_city = st.sidebar.selectbox(label= 'World Cities',
-                                     options = cities['city'].sort_values().unique() )
+with col2:
+    selected_year = st.selectbox(label= 'Select an year',
+                                 options= range(2022,1999,-1) )
 
 
 #-----------------------------------------------------------------------
 # Collect the Weather Information
 # Set time period
-start = datetime(2022, 1, 1)
-end = datetime(2022, 12, 31)
+start = datetime(selected_year, 1, 1)
+end = datetime(selected_year, 12, 31)
 
 # Create Point
 lat = cities.query('city == @selected_city')['latitude'].astype('float').tolist()[0]
