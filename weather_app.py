@@ -9,7 +9,7 @@ st.set_page_config(layout='wide')
 
 #-----------------------------------------------------------------------
 # Load the Dataset
-cities = pd.read_csv('/world_cities.csv')
+cities = pd.read_csv('world_cities.csv')
 
 #-----------------------------------------------------------------------
 
